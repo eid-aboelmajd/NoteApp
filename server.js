@@ -22,7 +22,6 @@ app.get("/" , (req , res)=>{
     res.send("hello gogo and bebo!");
 });
 
-//lls
 
 
 app.listen(port , ()=>{
