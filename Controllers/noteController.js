@@ -1,6 +1,15 @@
+const { json } = require("body-parser");
+const generator = require("../Utilities/generator");
+const memstorage = require("../Utilities/memory.storage");
+
+
 const Api = { 
 getAllNotes : (req , res)=>{
-    res.send("Get All Notes");
+    var seqId = generator.generate();
+    memstorage.store.setItem(seqId ,seqId + "-Note" );
+    var keys = memstorage.customeActions.GetKeys(memstorage.store);
+    var values = memstorage.customeActions.GetValues(memstorage.store);
+    res.send(JSON.stringify(memstorage.store));
 },
 getNote :(req , res)=>{
 res.send("Get one note by id");
@@ -17,5 +26,5 @@ deleteNote : (req , res)=>{
 }
 };
 
-exports.Api= Api;
+module.exports= Api;
 
