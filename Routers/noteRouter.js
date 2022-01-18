@@ -12,4 +12,3 @@ router.delete("/notes/deletenote" ,noteController.Api.deleteNote);
 
 module.exports = router;
 
-//test
