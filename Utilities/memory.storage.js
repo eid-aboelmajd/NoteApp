@@ -3,9 +3,6 @@ var MemoryStorage = require('memorystorage');
 var store = new MemoryStorage('note-app');
 
 var customeActions = {
-    test : ()=>{
-       return "eid mosad";
-    },
     GetKeys :(store)=>{
         var Keys = Object.keys(store);
         return Keys;
