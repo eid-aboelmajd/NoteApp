@@ -10,7 +10,12 @@ const Api = {
         res.send(JSON.stringify(values));
     },
     getNote: (req, res) => {
-        var id = req.query.id;
+        var id = req.params.noteId;
+        
+        if(!id)
+        {
+            return res.status(500).send({error : "noteId must not be null"});
+        }
         var noteobj = memstorage.store.getItem(id);
         if(!noteobj)
         {
@@ -48,12 +53,17 @@ const Api = {
         }
         noteObj.title = title;
         noteObj.content = content;
-        memstorage.store.removeItem(noteId);
+        //memstorage.store.removeItem(noteId);
         memstorage.store.setItem(noteId, noteObj);
         return res.status(201).send("Note is updated successfully!");
     },
     deleteNote: (req, res) => {
-        var id = req.query.id;
+        var id = req.params.noteId;
+        if(!id)
+        {
+            return res.status(500).send({error : "noteId must not be null"});
+        }
+
         var noteobj = memstorage.store.getItem(id);
         if(!noteobj)
         {
